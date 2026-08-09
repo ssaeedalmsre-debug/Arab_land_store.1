@@ -19,7 +19,6 @@
         .bg-main::before { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 0; }
         .content { position: relative; z-index: 1; padding-bottom: 80px; }
         
-        /* ===== شاشة تسجيل الدخول ===== */
         .login-screen { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; }
         .login-screen .logo { width: 200px; height: 200px; border-radius: 50%; border: 3px solid #ff0000; box-shadow: 0 0 60px rgba(255,0,0,0.3); margin-bottom: 30px; object-fit: cover; }
         .login-screen h1 { font-size: 3.5rem; font-weight: 900; background: linear-gradient(45deg, #ff0000, #ffd700, #ff0000); background-size: 200% 200%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: gradientShift 4s ease-in-out infinite; letter-spacing: 5px; }
@@ -75,9 +74,19 @@
         .store-card h2 { font-size: 2rem; font-weight: 900; margin-bottom: 5px; }
         .store-card p { font-size: 1rem; opacity: 0.9; }
         
-        .card-realestate { background-image: url('https://cdn.discordapp.com/attachments/1259131362615492658/1536078658274336988/Screenshot_------_com.openai.chatgpt.png?ex=6a7a183b&is=6a78c6bb&hm=ab0c5102d75c125c99686d438b39d359c40b65c00c836c39a3ca1f9c12ead26c&'); background-size: cover; background-position: center; }
-        .card-packages { background-image: url('https://cdn.discordapp.com/attachments/1259131362615492658/1536081379090104442/Screenshot_------_com.openai.chatgpt-3.png?ex=6a7a1ac3&is=6a78c943&hm=57b2c057d3849a568a3a8c48bc9ebc102234d4c868d91ae8f0a8b8345a41616c&'); background-size: cover; background-position: center; }
-        .card-gangs { background-image: url('https://cdn.discordapp.com/attachments/1259131362615492658/1536081378695716934/Screenshot_------_com.openai.chatgpt-2.png?ex=6a7a1ac3&is=6a78c943&hm=f4039a3e0e65b8769d86d3928eb5a398f143905be9b0bdbf4aa01361c7ddb93c&'); background-size: cover; background-position: center; }
+        /* ===== خلفيات الخانات الرئيسية ===== */
+        .card-realestate {
+            background-image: url('https://cdn.discordapp.com/attachments/1259131362615492658/1536078658274336988/Screenshot_------_com.openai.chatgpt.png?ex=6a7a183b&is=6a78c6bb&hm=ab0c5102d75c125c99686d438b39d359c40b65c00c836c39a3ca1f9c12ead26c&');
+            background-size: cover; background-position: center;
+        }
+        .card-packages {
+            background-image: url('https://cdn.discordapp.com/attachments/1259131362615492658/1536081379090104442/Screenshot_------_com.openai.chatgpt-3.png?ex=6a7a1ac3&is=6a78c943&hm=57b2c057d3849a568a3a8c48bc9ebc102234d4c868d91ae8f0a8b8345a41616c&');
+            background-size: cover; background-position: center;
+        }
+        .card-gangs {
+            background-image: url('https://cdn.discordapp.com/attachments/1259131362615492658/1536081378695716934/Screenshot_------_com.openai.chatgpt-2.png?ex=6a7a1ac3&is=6a78c943&hm=f4039a3e0e65b8769d86d3928eb5a398f143905be9b0bdbf4aa01361c7ddb93c&');
+            background-size: cover; background-position: center;
+        }
         
         .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
         .product-card {
@@ -98,9 +107,19 @@
         .product-card button { background: #ff0000; color: #fff; border: none; padding: 8px 16px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: all 0.3s; }
         .product-card button:hover { background: #cc0000; transform: scale(1.05); }
         
-        .bg-realestate-inner { background-image: url('https://cdn.discordapp.com/attachments/1259131362615492658/1536078658274336988/Screenshot_------_com.openai.chatgpt.png?ex=6a7a183b&is=6a78c6bb&hm=ab0c5102d75c125c99686d438b39d359c40b65c00c836c39a3ca1f9c12ead26c&'); background-size: cover; background-position: center; }
-        .bg-packages-inner { background-image: url('https://cdn.discordapp.com/attachments/1259131362615492658/1536081379090104442/Screenshot_------_com.openai.chatgpt-3.png?ex=6a7a1ac3&is=6a78c943&hm=57b2c057d3849a568a3a8c48bc9ebc102234d4c868d91ae8f0a8b8345a41616c&'); background-size: cover; background-position: center; }
-        .bg-gangs-inner { background-image: url('https://cdn.discordapp.com/attachments/1259131362615492658/1536081378695716934/Screenshot_------_com.openai.chatgpt-2.png?ex=6a7a1ac3&is=6a78c943&hm=f4039a3e0e65b8769d86d3928eb5a398f143905be9b0bdbf4aa01361c7ddb93c&'); background-size: cover; background-position: center; }
+        /* ===== خلفيات المنتجات الداخلية ===== */
+        .bg-realestate-inner {
+            background-image: url('https://cdn.discordapp.com/attachments/1259131362615492658/1536078658274336988/Screenshot_------_com.openai.chatgpt.png?ex=6a7a183b&is=6a78c6bb&hm=ab0c5102d75c125c99686d438b39d359c40b65c00c836c39a3ca1f9c12ead26c&');
+            background-size: cover; background-position: center;
+        }
+        .bg-packages-inner {
+            background-image: url('https://cdn.discordapp.com/attachments/1259131362615492658/1536081379090104442/Screenshot_------_com.openai.chatgpt-3.png?ex=6a7a1ac3&is=6a78c943&hm=57b2c057d3849a568a3a8c48bc9ebc102234d4c868d91ae8f0a8b8345a41616c&');
+            background-size: cover; background-position: center;
+        }
+        .bg-gangs-inner {
+            background-image: url('https://cdn.discordapp.com/attachments/1259131362615492658/1536081378695716934/Screenshot_------_com.openai.chatgpt-2.png?ex=6a7a1ac3&is=6a78c943&hm=f4039a3e0e65b8769d86d3928eb5a398f143905be9b0bdbf4aa01361c7ddb93c&');
+            background-size: cover; background-position: center;
+        }
         
         .ministry-card { background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); border: 1px solid rgba(255,0,0,0.2); border-radius: 12px; padding: 20px; text-align: center; transition: all 0.3s; min-height: 180px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
         .ministry-card:hover { transform: scale(1.03); border-color: #ff0000; }
@@ -143,23 +162,18 @@
 </head>
 <body>
 
-<!-- ===== شاشة تسجيل الدخول ===== -->
 <div id="loginScreen" class="login-screen bg-main">
     <div class="content text-center">
         <img class="logo" src="https://cdn.discordapp.com/attachments/1259131362615492658/1536081187112616086/file_0000000075ec81f4a2f598e0a37d13f8.png?ex=6a7a1a96&is=6a78c916&hm=d5e9dba92e8f19f99c21d3f807a1acb9149689193411752f0dec9ed14585738c&" alt="Arab Land">
         <h1>ARAB LAND</h1>
         <p>سيرفر رول بلاي فريد من نوعه</p>
-        
-        <!-- حقل إدخال اسم المستخدم -->
         <input type="text" id="usernameInput" class="login-input" placeholder="أدخل اسمك..." value="CJ">
         <button class="login-btn" onclick="loginWithUsername()">🚀 دخول</button>
     </div>
 </div>
 
-<!-- ===== الموقع الرئيسي ===== -->
 <div id="mainSite" style="display:none;" class="bg-main">
     <div class="content">
-        
         <div id="orderBar" class="order-bar">
             <span class="order-number" id="orderNumberDisplay">📋 رقم الطلب: <span id="orderNumberText">0</span></span>
             <div class="order-actions">
@@ -167,9 +181,7 @@
                 <button onclick="removeOrderNumber()">🗑️ إزالة</button>
             </div>
         </div>
-        
         <div id="pageContent"></div>
-        
         <nav class="bottom-nav" id="bottomNav">
             <a href="#" class="active" data-page="home"><i class="fas fa-home"></i><span>الرئيسية</span></a>
             <a href="#" data-page="store"><i class="fas fa-store"></i><span>المتجر</span></a>
@@ -178,13 +190,11 @@
             <a href="#" data-page="rules"><i class="fas fa-gavel"></i><span>القوانين</span></a>
             <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt" style="color:#ff0000;"></i><span style="color:#ff0000;">خروج</span></a>
         </nav>
-        
     </div>
 </div>
 
 <button class="cart-toggle" onclick="toggleCart()">
-    🛒
-    <span class="badge" id="cartBadge">0</span>
+    🛒 <span class="badge" id="cartBadge">0</span>
 </button>
 
 <div class="cart-sidebar" id="cartSidebar">
@@ -203,65 +213,51 @@
     let cartCount = 0;
     let currentUser = '';
 
-    // ===== تسجيل الدخول بالاسم =====
     function loginWithUsername() {
-        const nameInput = document.getElementById('usernameInput');
-        const username = nameInput.value.trim();
-        
-        if (username === '') {
-            alert('الرجاء إدخال اسمك!');
-            return;
-        }
-        
+        const username = document.getElementById('usernameInput').value.trim();
+        if (username === '') { alert('الرجاء إدخال اسمك!'); return; }
         currentUser = username;
-        try {
-            localStorage.setItem('user', JSON.stringify({ username: username }));
-        } catch(e) {}
-        
+        try { localStorage.setItem('user', JSON.stringify({ username: username })); } catch(e) {}
         document.getElementById('loginScreen').style.display = 'none';
         document.getElementById('mainSite').style.display = 'block';
         loadPage('home');
         showNotification('✅ مرحباً، ' + username + '!');
     }
 
-    // ===== تسجيل الخروج =====
     function logout() {
         try { localStorage.removeItem('user'); } catch(e) {}
         currentUser = '';
         document.getElementById('loginScreen').style.display = 'flex';
         document.getElementById('mainSite').style.display = 'none';
-        // مسح الحقل
         document.getElementById('usernameInput').value = '';
     }
 
-    // ===== دوال عرض رقم الطلب =====
     function showOrderNumber(number) {
         currentOrderNumber = number;
         document.getElementById('orderNumberText').textContent = number;
         document.getElementById('orderBar').classList.add('show');
         try { localStorage.setItem('lastOrderNumber', number); } catch(e) {}
     }
-    
+
     function saveOrderNumber() {
         if (currentOrderNumber) {
             try { localStorage.setItem('savedOrderNumber', currentOrderNumber); } catch(e) {}
             showNotification('✅ تم حفظ رقم الطلب: #' + currentOrderNumber);
         }
     }
-    
+
     function removeOrderNumber() {
         currentOrderNumber = '';
         document.getElementById('orderBar').classList.remove('show');
         try { localStorage.removeItem('lastOrderNumber'); } catch(e) {}
         showNotification('🗑️ تم إزالة رقم الطلب');
     }
-    
+
     try {
         const savedOrder = localStorage.getItem('lastOrderNumber');
         if (savedOrder) showOrderNumber(savedOrder);
     } catch(e) {}
-    
-    // ===== تحميل الصفحات =====
+
     function loadPage(page) {
         const content = document.getElementById('pageContent');
         const pages = { home: getHomePage, store: getStorePage, jobs: getJobsPage, admin: getAdminPage, rules: getRulesPage };
@@ -274,15 +270,14 @@
             if (page === 'store') setTimeout(() => { updateCartUI(); }, 100);
         }
     }
-    
+
     document.querySelectorAll('.bottom-nav a[data-page]').forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             loadPage(this.dataset.page);
         });
     });
-    
-    // ===== الصفحات =====
+
     function getHomePage() {
         let username = 'CJ';
         try {
@@ -301,7 +296,7 @@
             </section>
         `;
     }
-    
+
     function getStorePage() {
         return `
             <section class="section">
@@ -341,7 +336,7 @@
             </section>
         `;
     }
-    
+
     function getProducts(type) {
         const items = {
             realestate: [
@@ -388,7 +383,7 @@
             </div>
         `).join('');
     }
-    
+
     function showCategory(type) {
         document.getElementById('realestateProducts').classList.add('hidden');
         document.getElementById('packagesProducts').classList.add('hidden');
@@ -396,11 +391,11 @@
         document.getElementById(type + 'Products').classList.remove('hidden');
         document.getElementById(type + 'Products').scrollIntoView({ behavior: 'smooth' });
     }
-    
+
     function hideCategory(id) {
         document.getElementById(id).classList.add('hidden');
     }
-    
+
     function getJobsPage() {
         const ministries = [
             { name: 'وزارة الداخلية', img: 'https://cdn.discordapp.com/attachments/1259131362615492658/1536086258885861486/IMG__.png?ex=6a7a1f4f&is=6a78cdcf&hm=fb455773738c53eaddef025b89ed91aeb1bb09a725a19899934f0ea1eba63054&' },
@@ -425,7 +420,7 @@
             </section>
         `;
     }
-    
+
     function getAdminPage() {
         return `
             <section class="section">
@@ -438,7 +433,7 @@
             </section>
         `;
     }
-    
+
     function getRulesPage() {
         const laws = {
             'قوانين الحياة الحديثة — NLR': ['عند موتك داخل اللعبة تبدأ حياة جديدة كلياً، ولا يحق لك تذكر أي حدث وقع قبل موتك.','يمنع العودة إلى نفس المكان الذي متّ فيه خلال 15 دقيقة على الأقل.','لا يحق لك الانتقام من الشخص الذي قتلك في نفس السيناريو.','إذا متّ أثناء عملية (خطف، سرقة، مطاردة) لا يحق لك العودة للمشاركة فيها مجدداً.','مخالفة NLR تُعدّ من المخالفات الجسيمة وتستوجب عقوبة من الإدارة.'],
@@ -461,8 +456,7 @@
         html += `</div></section>`;
         return html;
     }
-    
-    // ===== نظام السلة =====
+
     function addToCart(name, price) {
         const existing = cart.find(item => item.name === name);
         if (existing) { existing.quantity += 1; } else { cart.push({ name, price, quantity: 1 }); }
@@ -470,13 +464,13 @@
         updateCartUI();
         showNotification('✅ تم إضافة "' + name + '" إلى السلة!');
     }
-    
+
     function removeFromCart(index) {
         cartCount -= cart[index].quantity;
         cart.splice(index, 1);
         updateCartUI();
     }
-    
+
     function updateCartUI() {
         const itemsContainer = document.getElementById('cartItems');
         const totalEl = document.getElementById('cartTotal');
@@ -503,9 +497,9 @@
         itemsContainer.innerHTML = html;
         totalEl.textContent = 'المجموع: ' + total.toLocaleString() + ' كريدت';
     }
-    
+
     function toggleCart() { document.getElementById('cartSidebar').classList.toggle('open'); }
-    
+
     function checkout() {
         if (cart.length === 0) { showNotification('⚠️ السلة فارغة!', 'error'); return; }
         const orderNumber = Date.now().toString().slice(-6) + Math.floor(Math.random() * 9000 + 1000);
@@ -529,7 +523,7 @@
         })
         .catch(() => showNotification('⚠️ خطأ في الشبكة.', 'error'));
     }
-    
+
     function showNotification(message, type = 'success') {
         const colors = { success: '#00ff00', error: '#ff0000', warning: '#ffd700' };
         const notification = document.createElement('div');
@@ -547,15 +541,13 @@
             setTimeout(() => notification.remove(), 400);
         }, 3000);
     }
-    
-    // ===== تحميل المستخدم المحفوظ =====
+
     try {
         const savedUser = localStorage.getItem('user');
         if (savedUser) {
             const user = JSON.parse(savedUser);
             if (user.username) {
                 document.getElementById('usernameInput').value = user.username;
-                // تسجيل الدخول التلقائي
                 document.getElementById('loginScreen').style.display = 'none';
                 document.getElementById('mainSite').style.display = 'block';
                 loadPage('home');
