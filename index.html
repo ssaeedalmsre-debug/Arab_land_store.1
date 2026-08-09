@@ -28,7 +28,33 @@
         .login-btn { background: #5865F2; color: #fff; padding: 14px 40px; border-radius: 50px; border: none; font-size: 1.2rem; font-weight: 700; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 10px; }
         .login-btn:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(88,101,242,0.4); }
         
-        /* ===== الشريط السفلي (بدلاً من العلوي) ===== */
+        /* ===== الشريط العلوي لعرض رقم الطلب ===== */
+        .order-bar {
+            background: rgba(0,0,0,0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid #ffd700;
+            padding: 12px 20px;
+            display: none;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            color: #fff;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .order-bar.show { display: flex; }
+        .order-bar .order-number { color: #ffd700; font-weight: 700; font-size: 1.1rem; }
+        .order-bar .order-actions { display: flex; gap: 10px; }
+        .order-bar .order-actions button {
+            background: #ff0000; color: #fff; border: none; padding: 5px 15px; border-radius: 6px; font-weight: 700; cursor: pointer; transition: all 0.3s;
+        }
+        .order-bar .order-actions button:hover { transform: scale(1.05); }
+        .order-bar .order-actions .save-btn { background: #00ff00; color: #000; }
+        .order-bar .order-actions .save-btn:hover { background: #00cc00; }
+        
+        /* ===== الشريط السفلي ===== */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -57,13 +83,6 @@
         .bottom-nav a i { font-size: 1.4rem; margin-bottom: 2px; }
         .bottom-nav a:hover { color: #fff; }
         .bottom-nav a.active { color: #ff0000; }
-        .bottom-nav .user-avatar {
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            border: 2px solid #ff0000;
-            object-fit: cover;
-        }
         
         /* ===== البطاقات والخانات ===== */
         .glass-card { background: rgba(20,0,0,0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255,0,0,0.2); border-radius: 15px; padding: 20px; transition: all 0.3s; }
@@ -72,7 +91,7 @@
         .section { padding: 20px 15px; max-width: 1200px; margin: 0 auto; }
         .section-title { font-size: 2rem; font-weight: 900; color: #ff0000; text-align: center; margin-bottom: 20px; }
         
-        /* ===== خانات المتجر (مثل القديم) ===== */
+        /* ===== خانات المتجر الرئيسية (من برا) ===== */
         .store-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
         .store-card {
             border-radius: 15px;
@@ -94,10 +113,19 @@
         .store-card h2 { font-size: 2rem; font-weight: 900; margin-bottom: 5px; }
         .store-card p { font-size: 1rem; opacity: 0.9; }
         
-        /* خلفيات الخانات الرئيسية */
-        .card-realestate { background-image: url('https://cdn.discordapp.com/attachments/1259131362615492658/1536078658274336988/Screenshot_------_com.openai.chatgpt.png?ex=6a7a183b&is=6a78c6bb&hm=ab0c5102d75c125c99686d438b39d359c40b65c00c836c39a3ca1f9c12ead26c&'); }
-        .card-packages { background-image: url('https://cdn.discordapp.com/attachments/1259131362615492658/1536081379090104442/Screenshot_------_com.openai.chatgpt-3.png?ex=6a7a1ac3&is=6a78c943&hm=57b2c057d3849a568a3a8c48bc9ebc102234d4c868d91ae8f0a8b8345a41616c&'); }
-        .card-gangs { background-image: url('https://cdn.discordapp.com/attachments/1259131362615492658/1536081378695716934/Screenshot_------_com.openai.chatgpt-2.png?ex=6a7a1ac3&is=6a78c943&hm=f4039a3e0e65b8769d86d3928eb5a398f143905be9b0bdbf4aa01361c7ddb93c&'); }
+        /* خلفيات الخانات الرئيسية (من برا) */
+        .card-realestate {
+            background-image: url('https://cdn.discordapp.com/attachments/1259131362615492658/1536078658274336988/Screenshot_------_com.openai.chatgpt.png?ex=6a7a183b&is=6a78c6bb&hm=ab0c5102d75c125c99686d438b39d359c40b65c00c836c39a3ca1f9c12ead26c&');
+            background-size: cover; background-position: center;
+        }
+        .card-packages {
+            background-image: url('https://cdn.discordapp.com/attachments/1259131362615492658/1536081379090104442/Screenshot_------_com.openai.chatgpt-3.png?ex=6a7a1ac3&is=6a78c943&hm=57b2c057d3849a568a3a8c48bc9ebc102234d4c868d91ae8f0a8b8345a41616c&');
+            background-size: cover; background-position: center;
+        }
+        .card-gangs {
+            background-image: url('https://cdn.discordapp.com/attachments/1259131362615492658/1536081378695716934/Screenshot_------_com.openai.chatgpt-2.png?ex=6a7a1ac3&is=6a78c943&hm=f4039a3e0e65b8769d86d3928eb5a398f143905be9b0bdbf4aa01361c7ddb93c&');
+            background-size: cover; background-position: center;
+        }
         
         /* ===== خانات المنتجات الداخلية ===== */
         .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
@@ -111,6 +139,8 @@
             border: 2px solid rgba(255,255,255,0.1);
             color: #fff;
             text-align: center;
+            background-size: cover;
+            background-position: center;
         }
         .product-card:hover { transform: translateY(-5px); border-color: #ffd700; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .product-card .price { color: #ffd700; font-size: 1.2rem; font-weight: 700; }
@@ -118,9 +148,18 @@
         .product-card button:hover { background: #cc0000; transform: scale(1.05); }
         
         /* خلفيات المنتجات الداخلية */
-        .bg-realestate { background-image: url('https://cdn.discordapp.com/attachments/1259131362615492658/1536078658274336988/Screenshot_------_com.openai.chatgpt.png?ex=6a7a183b&is=6a78c6bb&hm=ab0c5102d75c125c99686d438b39d359c40b65c00c836c39a3ca1f9c12ead26c&'); background-size: cover; background-position: center; }
-        .bg-packages { background-image: url('https://cdn.discordapp.com/attachments/1259131362615492658/1536081379090104442/Screenshot_------_com.openai.chatgpt-3.png?ex=6a7a1ac3&is=6a78c943&hm=57b2c057d3849a568a3a8c48bc9ebc102234d4c868d91ae8f0a8b8345a41616c&'); background-size: cover; background-position: center; }
-        .bg-gangs { background-image: url('https://cdn.discordapp.com/attachments/1259131362615492658/1536081378695716934/Screenshot_------_com.openai.chatgpt-2.png?ex=6a7a1ac3&is=6a78c943&hm=f4039a3e0e65b8769d86d3928eb5a398f143905be9b0bdbf4aa01361c7ddb93c&'); background-size: cover; background-position: center; }
+        .bg-realestate-inner {
+            background-image: url('https://cdn.discordapp.com/attachments/1259131362615492658/1536078658274336988/Screenshot_------_com.openai.chatgpt.png?ex=6a7a183b&is=6a78c6bb&hm=ab0c5102d75c125c99686d438b39d359c40b65c00c836c39a3ca1f9c12ead26c&');
+            background-size: cover; background-position: center;
+        }
+        .bg-packages-inner {
+            background-image: url('https://cdn.discordapp.com/attachments/1259131362615492658/1536081379090104442/Screenshot_------_com.openai.chatgpt-3.png?ex=6a7a1ac3&is=6a78c943&hm=57b2c057d3849a568a3a8c48bc9ebc102234d4c868d91ae8f0a8b8345a41616c&');
+            background-size: cover; background-position: center;
+        }
+        .bg-gangs-inner {
+            background-image: url('https://cdn.discordapp.com/attachments/1259131362615492658/1536081378695716934/Screenshot_------_com.openai.chatgpt-2.png?ex=6a7a1ac3&is=6a78c943&hm=f4039a3e0e65b8769d86d3928eb5a398f143905be9b0bdbf4aa01361c7ddb93c&');
+            background-size: cover; background-position: center;
+        }
         
         /* ===== وزارات ===== */
         .ministry-card { background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); border: 1px solid rgba(255,0,0,0.2); border-radius: 12px; padding: 20px; text-align: center; transition: all 0.3s; min-height: 180px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
@@ -150,7 +189,7 @@
         .cart-toggle:hover { transform: scale(1.1); box-shadow: 0 0 50px rgba(255,0,0,0.6); }
         .cart-toggle .badge { position: absolute; top: -5px; right: -5px; background: #ffd700; color: #000; border-radius: 50%; width: 22px; height: 22px; font-size: 0.7rem; font-weight: 700; display: flex; justify-content: center; align-items: center; }
         
-        /* ===== صفحة المتجر (الخانات الرئيسية) ===== */
+        /* ===== إخفاء العناصر ===== */
         .hidden { display: none; }
         
         /* ===== إشعارات ===== */
@@ -164,6 +203,7 @@
             .cart-sidebar { width: 100%; left: -100%; }
             .bottom-nav a { font-size: 0.6rem; }
             .bottom-nav a i { font-size: 1.2rem; }
+            .order-bar { flex-direction: column; text-align: center; }
         }
     </style>
 </head>
@@ -184,6 +224,15 @@
 <!-- ===== الموقع الرئيسي ===== -->
 <div id="mainSite" style="display:none;" class="bg-main">
     <div class="content">
+        
+        <!-- ===== شريط عرض رقم الطلب ===== -->
+        <div id="orderBar" class="order-bar">
+            <span class="order-number" id="orderNumberDisplay">📋 رقم الطلب: <span id="orderNumberText">0</span></span>
+            <div class="order-actions">
+                <button class="save-btn" onclick="saveOrderNumber()">💾 حفظ</button>
+                <button onclick="removeOrderNumber()">🗑️ إزالة</button>
+            </div>
+        </div>
         
         <!-- ===== المحتوى ===== -->
         <div id="pageContent"></div>
@@ -237,6 +286,38 @@
 </div>
 
 <script>
+    // ===== نظام عرض رقم الطلب =====
+    let currentOrderNumber = '';
+    
+    function showOrderNumber(number) {
+        currentOrderNumber = number;
+        document.getElementById('orderNumberText').textContent = number;
+        document.getElementById('orderBar').classList.add('show');
+        // حفظ في localStorage
+        localStorage.setItem('lastOrderNumber', number);
+    }
+    
+    function saveOrderNumber() {
+        if (currentOrderNumber) {
+            // حفظ الرقم في مكان آمن (مثل localStorage)
+            localStorage.setItem('savedOrderNumber', currentOrderNumber);
+            showNotification('✅ تم حفظ رقم الطلب: #' + currentOrderNumber);
+        }
+    }
+    
+    function removeOrderNumber() {
+        currentOrderNumber = '';
+        document.getElementById('orderBar').classList.remove('show');
+        localStorage.removeItem('lastOrderNumber');
+        showNotification('🗑️ تم إزالة رقم الطلب');
+    }
+    
+    // استرجاع الرقم المحفوظ سابقاً
+    const savedOrder = localStorage.getItem('lastOrderNumber');
+    if (savedOrder) {
+        showOrderNumber(savedOrder);
+    }
+    
     // ===== تسجيل الدخول =====
     function loginWithDiscord() {
         const mockUser = {
@@ -266,19 +347,16 @@
         const pages = { home: getHomePage, store: getStorePage, jobs: getJobsPage, admin: getAdminPage, rules: getRulesPage };
         if (pages[page]) {
             content.innerHTML = pages[page]();
-            // تحديث الرابط النشط في الشريط السفلي
             document.querySelectorAll('.bottom-nav a[data-page]').forEach(link => {
                 link.classList.remove('active');
                 if (link.dataset.page === page) link.classList.add('active');
             });
-            // إذا كانت صفحة المتجر، نحدث السلة
             if (page === 'store') {
                 setTimeout(() => { updateCartUI(); }, 100);
             }
         }
     }
     
-    // روابط الشريط السفلي
     document.querySelectorAll('.bottom-nav a[data-page]').forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
@@ -302,7 +380,7 @@
         `;
     }
     
-    // ===== صفحة المتجر (بنظام الخانات القديم) =====
+    // ===== صفحة المتجر =====
     function getStorePage() {
         return `
             <section class="section">
@@ -322,22 +400,30 @@
                     </div>
                 </div>
                 
-                <!-- الأقسام الداخلية (تظهر عند الضغط) -->
+                <!-- العقارات -->
                 <div id="realestateProducts" class="hidden" style="margin-top:30px;">
                     <h3 style="color:#00ff00;font-size:1.8rem;text-align:center;">🏠 العقارات</h3>
-                    <div class="product-grid">${getProducts('realestate')}</div>
+                    <div class="product-grid">
+                        ${getProducts('realestate')}
+                    </div>
                     <button onclick="hideCategory('realestateProducts')" style="margin-top:10px;background:transparent;border:1px solid #ff0000;color:#ff0000;padding:8px 20px;border-radius:8px;cursor:pointer;">⬅️ رجوع</button>
                 </div>
                 
+                <!-- الحزم -->
                 <div id="packagesProducts" class="hidden" style="margin-top:30px;">
                     <h3 style="color:#ffd700;font-size:1.8rem;text-align:center;">🎁 الحزم</h3>
-                    <div class="product-grid">${getProducts('packages')}</div>
+                    <div class="product-grid">
+                        ${getProducts('packages')}
+                    </div>
                     <button onclick="hideCategory('packagesProducts')" style="margin-top:10px;background:transparent;border:1px solid #ff0000;color:#ff0000;padding:8px 20px;border-radius:8px;cursor:pointer;">⬅️ رجوع</button>
                 </div>
                 
+                <!-- العصابات -->
                 <div id="gangsProducts" class="hidden" style="margin-top:30px;">
                     <h3 style="color:#ff0000;font-size:1.8rem;text-align:center;">⚔️ العصابات</h3>
-                    <div class="product-grid">${getProducts('gangs')}</div>
+                    <div class="product-grid">
+                        ${getProducts('gangs')}
+                    </div>
                     <button onclick="hideCategory('gangsProducts')" style="margin-top:10px;background:transparent;border:1px solid #ff0000;color:#ff0000;padding:8px 20px;border-radius:8px;cursor:pointer;">⬅️ رجوع</button>
                 </div>
             </section>
@@ -377,7 +463,11 @@
                 { name: 'هيلي كوبتر', price: 150000 }
             ]
         };
-        const bgClass = { realestate: 'bg-realestate', packages: 'bg-packages', gangs: 'bg-gangs' };
+        const bgClass = {
+            realestate: 'bg-realestate-inner',
+            packages: 'bg-packages-inner',
+            gangs: 'bg-gangs-inner'
+        };
         return items[type].map(item => `
             <div class="product-card ${bgClass[type]}" style="background:rgba(0,0,0,0.7);backdrop-filter:blur(5px);border:2px solid rgba(255,255,255,0.1);">
                 <h4 style="font-size:1.2rem;">${item.name}</h4>
@@ -392,7 +482,6 @@
         document.getElementById('packagesProducts').classList.add('hidden');
         document.getElementById('gangsProducts').classList.add('hidden');
         document.getElementById(type + 'Products').classList.remove('hidden');
-        // تمرير إلى الأعلى
         document.getElementById(type + 'Products').scrollIntoView({ behavior: 'smooth' });
     }
     
@@ -580,6 +669,9 @@
             return;
         }
         const orderNumber = Date.now().toString().slice(-6) + Math.floor(Math.random() * 9000 + 1000);
+        // عرض رقم الطلب في الشريط العلوي
+        showOrderNumber(orderNumber);
+        
         let orderText = '🛍️ **طلب جديد من متجر Arab Land**\n📋 **رقم الطلب:** #' + orderNumber + '\n\n';
         let total = 0;
         cart.forEach(item => {
@@ -588,14 +680,19 @@
         });
         orderText += '\n💰 **الإجمالي:** ' + total.toLocaleString() + ' كريدت';
         orderText += '\n\n📌 يرجى التوجه إلى تكت المتجر في الديسكورد لاستلام الطلب';
+        
         fetch('https://discord.com/api/webhooks/1536050582245081228/kFbbq1v92r15IC92OlfAkXjXQODCGJ68d73Ztp56IUThZVN19UPgAYIclu9jTmN13M9d', {
-            method: 'POST', headers: { 'Content-Type': 'application/json' },
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ content: orderText })
         })
         .then(res => {
             if (res.ok) {
                 showNotification('✅ تم إرسال طلبك بنجاح! رقم الطلب: #' + orderNumber);
-                cart = []; cartCount = 0; updateCartUI(); toggleCart();
+                cart = [];
+                cartCount = 0;
+                updateCartUI();
+                toggleCart();
             } else {
                 showNotification('❌ فشل الإرسال، تأكد من إعدادات الـ Webhook.', 'error');
             }
