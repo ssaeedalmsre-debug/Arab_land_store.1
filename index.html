@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arab Land - البوابة الرسمية</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap');
+        * { font-family: 'Cairo', sans-serif; margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { background: #0a0000; color: #fff; min-height: 100vh; }
+        
+        .bg-main {
+            background-image: url('https://cdn.discordapp.com/attachments/1259131362615492658/1536081187112616086/file_0000000075ec81f4a2f598e0a37d13f8.png?ex=6a7a1a96&is=6a78c916&hm=d5e9dba92e8f19f99c21d3f807a1acb9149689193411752f0dec9ed14585738c&');
+            background-size: cover; background-position: center; background-attachment: fixed; min-height: 100vh;
+        }
+        .bg-main::before { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 0; }
+        .content { position: relative; z-index: 1; }
+        
+        .login-screen { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; }
+        .login-screen .logo { width: 200px; height: 200px; border-radius: 50%; border: 3px solid #ff0000; box-shadow: 0 0 60px rgba(255,0,0,0.3); margin-bottom: 30px; object-fit: cover; }
+        .login-screen h1 { font-size: 3.5rem; font-weight: 900; background: linear-gradient(45deg, #ff0000, #ffd700, #ff0000); background-size: 200% 200%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: gradientShift 4s ease-in-out infinite alternate; letter-spacing: 5px; }
+        @keyframes gradientShift { 0% { background-position: 0% 50%; } 100% { background-position: 100% 50%; } }
+        .login-screen p { color: #aaa; font-size: 1.2rem; margin: 10px 0 30px; }
+        .login-btn { background: #5865F2; color: #fff; padding: 14px 40px; border-radius: 50px; border: none; font-size: 1.2rem; font-weight: 700; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 10px; }
+        .login-btn:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(88,101,242,0.4); }
+        
+        .navbar { background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,0,0,0.3); padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; flex-wrap: wrap; gap: 10px; }
+        .navbar .brand { display: flex; align-items: center; gap: 10px; }
+        .navbar .brand img { height: 40px; border-radius: 50%; }
+        .navbar .brand span { font-size: 1.5rem; font-weight: 700; color: #ff0000; }
+        .navbar .nav-links { display: flex; gap: 15px; list-style: none; flex-wrap: wrap; }
+        .navbar .nav-links a { color: #ccc; text-decoration: none; transition: all 0.3s; padding: 5px 10px; border-radius: 5px; font-size: 0.95rem; }
+        .navbar .nav-links a:hover, .navbar .nav-links a.active { color: #fff; background: rgba(255,0,0,0.2); }
+        .navbar .user-info { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .navbar .user-info img { width: 35px; height: 35px; border-radius: 50%; border: 2px solid #ff0000; }
+        .navbar .user-info span { color: #fff; font-weight: 700; }
+        
+        .glass-card { background: rgba(20,0,0,0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255,0,0,0.2); border-radius: 15px; padding: 20px; transition: all 0.3s; }
+        .glass-card:hover { transform: translateY(-5px); box-shadow: 0 10px 40px rgba(255,0,0,0.15); border-color: rgba(255,0,0,0.5); }
+        
+        .btn-red { background: #ff0000; color: #fff; padding: 8px 20px; border-radius: 8px; border: none; font-weight: 700; cursor: pointer; transition: all 0.3s; }
+        .btn-red:hover { background: #cc0000; transform: scale(1.05); }
+        .btn-outline-red { background: transparent; color: #ff0000; border: 2px solid #ff0000; padding: 8px 20px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: all 0.3s; }
+        .btn-outline-red:hover { background: #ff0000; color: #fff; }
+        
+        .status-badge { padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; }
+        .status-online { background: #00ff00; color: #000; }
+        .status-offline { background: #ff0000; color: #fff; }
+        
+        .section { padding: 40px 20px; max-width: 1200px; margin: 0 auto; }
+        .section-title { font-size: 2.5rem; font-weight: 900; color: #ff0000; text-align: center; margin-bottom: 30px; }
+        
+        .store-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .store-item { background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; padding: 20px; text-align: center; transition: all 0.3s; }
+        .store-item:hover { transform: translateY(-8px); border-color: #ff0000; box-shadow: 0 15px 40px rgba(255,0,0,0.15); }
+        .store-item .icon { font-size: 2.5rem; margin-bottom: 10px; }
+        .store-item .name { font-size: 1.1rem; font-weight: 700; color: #fff; }
+        .store-item .price { color: #ffd700; font-size: 1.1rem; font-weight: 700; margin: 8px 0; }
+        
+        .bg-realestate { background-image: url('https://cdn.discordapp.com/attachments/1259131362615492658/1536078658274336988/Screenshot_------_com.openai.chatgpt.png?ex=6a7a183b&is=6a78c6bb&hm=ab0c5102d75c125c99686d438b39d359c40b65c00c836c39a3ca1f9c12ead26c&'); background-size: cover; background-position: center; }
+        .bg-packages { background-image: url('https://cdn.discordapp.com/attachments/1259131362615492658/1536081379090104442/Screenshot_------_com.openai.chatgpt-3.png?ex=6a7a1ac3&is=6a78c943&hm=57b2c057d3849a568a3a8c48bc9ebc102234d4c868d91ae8f0a8b8345a41616c&'); background-size: cover; background-position: center; }
+        .bg-gangs { background-image: url('https://cdn.discordapp.com/attachments/1259131362615492658/1536081378695716934/Screenshot_------_com.openai.chatgpt-2.png?ex=6a7a1ac3&is=6a78c943&hm=f4039a3e0e65b8769d86d3928eb5a398f143905be9b0bdbf4aa01361c7ddb93c&'); background-size: cover; background-position: center; }
+        
+        .ministry-card { background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); border: 1px solid rgba(255,0,0,0.2); border-radius: 12px; padding: 20px; text-align: center; transition: all 0.3s; min-height: 180px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .ministry-card:hover { transform: scale(1.03); border-color: #ff0000; }
+        .ministry-card img { width: 80px; height: 80px; border-radius: 50%; border: 2px solid #ff0000; margin-bottom: 10px; object-fit: cover; }
+        .ministry-card .closed { color: #ff0000; font-weight: 700; margin-top: 10px; font-size: 0.9rem; }
+        
+        .admin-card { background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); border: 1px solid rgba(255,0,0,0.2); border-radius: 12px; padding: 20px; text-align: center; transition: all 0.3s; }
+        .admin-card .rank { color: #ff0000; font-weight: 700; font-size: 0.9rem; }
+        .admin-card .name { font-size: 1.3rem; font-weight: 700; }
+        
+        .law-item { border-right: 3px solid #ff0000; padding-right: 15px; margin-bottom: 12px; }
+        
+        .search-box { background: rgba(0,0,0,0.3); border: 1px solid rgba(255,0,0,0.2); border-radius: 10px; padding: 10px 15px; color: #fff; width: 100%; max-width: 400px; transition: all 0.3s; }
+        .search-box:focus { border-color: #ff0000; outline: none; box-shadow: 0 0 20px rgba(255,0,0,0.1); }
+        
+        .btn-add { background: linear-gradient(135deg, #ff0000, #cc0000); color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: all 0.3s; }
+        .btn-add:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(255,0,0,0.3); }
+        
+        .cart-sidebar { position: fixed; top: 0; left: -400px; width: 380px; height: 100%; background: rgba(10,0,0,0.95); backdrop-filter: blur(15px); border-right: 2px solid #ff0000; padding: 20px; z-index: 1000; transition: all 0.4s ease; overflow-y: auto; }
+        .cart-sidebar.open { left: 0; }
+        .cart-sidebar .cart-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,0,0,0.3); padding-bottom: 15px; margin-bottom: 15px; }
+        .cart-sidebar .cart-header h3 { color: #ffd700; font-size: 1.5rem; }
+        .cart-sidebar .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .cart-sidebar .cart-item .item-name { color: #fff; }
+        .cart-sidebar .cart-item .item-price { color: #ffd700; }
+        .cart-sidebar .cart-total { color: #ffd700; font-size: 1.3rem; font-weight: 700; padding: 15px 0; border-top: 2px solid rgba(255,0,0,0.3); margin-top: 15px; }
+        
+        .cart-toggle { position: fixed; bottom: 30px; right: 30px; background: #ff0000; color: #fff; border: none; border-radius: 50%; width: 60px; height: 60px; font-size: 1.8rem; cursor: pointer; box-shadow: 0 0 30px rgba(255,0,0,0.4); transition: all 0.3s; z-index: 500; }
+        .cart-toggle:hover { transform: scale(1.1); box-shadow: 0 0 50px rgba(255,0,0,0.6); }
+        .cart-toggle .badge { position: absolute; top: -5px; right: -5px; background: #ffd700; color: #000; border-radius: 50%; width: 25px; height: 25px; font-size: 0.8rem; font-weight: 700; display: flex; justify-content: center; align-items: center; }
+        
+        @media (max-width: 768px) {
+            .navbar .nav-links { display: none; width: 100%; flex-direction: column; align-items: center; }
+            .navbar .nav-links.open { display: flex; }
+            .navbar .nav-toggle { display: block; background: transparent; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
+            .login-screen h1 { font-size: 2.5rem; }
+            .section-title { font-size: 2rem; }
+            .cart-sidebar { width: 100%; left: -100%; }
+        }
+        .nav-toggle { display: none; }
+        @media (max-width: 768px) { .nav-toggle { display: block; } }
+        
+        @keyframes fadeInUp { from { opacity: 0; transform: translateX(-50%) translateY(30px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
+        @keyframes fadeOutDown { from { opacity: 1; transform: translateX(-50%) translateY(0); } to { opacity: 0; transform: translateX(-50%) translateY(30px); } }
+    </style>
+</head>
+<body>
+
+<!-- ===== شاشة تسجيل الدخول ===== -->
+<div id="loginScreen" class="login-screen bg-main">
+    <div class="content text-center">
+        <img class="logo" src="https://cdn.discordapp.com/attachments/1259131362615492658/1536081187112616086/file_0000000075ec81f4a2f598e0a37d13f8.png?ex=6a7a1a96&is=6a78c916&hm=d5e9dba92e8f19f99c21d3f807a1acb9149689193411752f0dec9ed14585738c&" alt="Arab Land">
+        <h1>ARAB LAND</h1>
+        <p>سيرفر رول بلاي فريد من نوعه</p>
+        <button class="login-btn" onclick="loginWithDiscord()">
+            <i class="fab fa-discord"></i> سجل دخولك عبر ديسكورد
+        </button>
+    </div>
+</div>
+
+<!-- ===== الموقع الرئيسي ===== -->
+<div id="mainSite" style="display:none;" class="bg-main">
+    <div class="content">
+        <nav class="navbar">
+            <div class="brand">
+                <img src="https://cdn.discordapp.com/attachments/1259131362615492658/1536081187112616086/file_0000000075ec81f4a2f598e0a37d13f8.png?ex=6a7a1a96&is=6a78c916&hm=d5e9dba92e8f19f99c21d3f807a1acb9149689193411752f0dec9ed14585738c&" alt="Arab Land">
+                <span>Arab Land</span>
+            </div>
+            <button class="nav-toggle" onclick="toggleNav()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#" class="active" data-page="home">🏠 الرئيسية</a></li>
+                <li><a href="#" data-page="store">🛍️ المتجر</a></li>
+                <li><a href="#" data-page="jobs">💼 الوظائف</a></li>
+                <li><a href="#" data-page="admin">👑 الإدارة</a></li>
+                <li><a href="#" data-page="rules">📜 القوانين</a></li>
+            </ul>
+            <div class="user-info" id="userInfo">
+                <img id="userAvatar" src="" alt="User">
+                <span id="userName">مستخدم</span>
+                <button class="btn-outline-red" onclick="logout()" style="padding:4px 12px;font-size:0.8rem;">تسجيل خروج</button>
+            </div>
+        </nav>
+        <div id="pageContent"></div>
+    </div>
+</div>
+
+<!-- ===== زر السلة ===== -->
+<button class="cart-toggle" onclick="toggleCart()">
+    🛒
+    <span class="badge" id="cartBadge">0</span>
+</button>
+
+<!-- ===== شريط السلة ===== -->
+<div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+        <h3>🛒 سلة المشتريات</h3>
+        <button onclick="toggleCart()" style="background:transparent;border:none;color:#fff;font-size:1.5rem;cursor:pointer;">✕</button>
+    </div>
+    <div id="cartItems"><p style="color:#666;text-align:center;padding:20px;">السلة فارغة</p></div>
+    <div class="cart-total" id="cartTotal">المجموع: 0 كريدت</div>
+    <button onclick="checkout()" style="width:100%;background:#00ff00;color:#000;border:none;padding:12px;border-radius:10px;font-weight:700;font-size:1.1rem;cursor:pointer;margin-top:10px;">✅ إنهاء الطلب</button>
+</div>
+
+<script>
+    // ===== تسجيل الدخول =====
+    function loginWithDiscord() {
+        const mockUser = {
+            username: 'CJ',
+            avatar: 'https://cdn.discordapp.com/attachments/1259131362615492658/1536082889974743100/Screenshot_------_com.openai.chatgpt-6.png?ex=6a7a1c2c&is=6a78caac&hm=abf5c6b3a5d5ecf954bd09e430d12fabb85805fe48bae293cf9c37e9a3d89119&',
+            id: '123456789'
+        };
+        localStorage.setItem('user', JSON.stringify(mockUser));
+        showMainSite(mockUser);
+    }
+    
+    function showMainSite(user) {
+        document.getElementById('loginScreen').style.display = 'none';
+        document.getElementById('mainSite').style.display = 'block';
+        document.getElementById('userAvatar').src = user.avatar;
+        document.getElementById('userName').textContent = user.username;
+        loadPage('home');
+    }
+    
+    function logout() {
+        localStorage.removeItem('user');
+        document.getElementById('loginScreen').style.display = 'flex';
+        document.getElementById('mainSite').style.display = 'none';
+    }
+    
+    function toggleNav() {
+        document.getElementById('navLinks').classList.toggle('open');
+    }
+    
+    // ===== تحميل الصفحات =====
+    function loadPage(page) {
+        const content = document.getElementById('pageContent');
+        const pages = { home: getHomePage, store: getStorePage, jobs: getJobsPage, admin: getAdminPage, rules: getRulesPage };
+        if (pages[page]) {
+            content.innerHTML = pages[page]();
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+                if (link.dataset.page === page) link.classList.add('active');
+            });
+            if (page === 'store') {
+                setTimeout(() => { updateCartUI(); }, 100);
+            }
+        }
+    }
+    
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            loadPage(this.dataset.page);
+        });
+    });
+    
+    // ===== الصفحات =====
+    function getHomePage() {
+        const user = JSON.parse(localStorage.getItem('user') || '{"username":"CJ"}');
+        return `
+            <section class="section">
+                <div class="glass-card text-center" style="max-width:800px;margin:0 auto;">
+                    <img src="https://cdn.discordapp.com/attachments/1259131362615492658/1536082889974743100/Screenshot_------_com.openai.chatgpt-6.png?ex=6a7a1c2c&is=6a78caac&hm=abf5c6b3a5d5ecf954bd09e430d12fabb85805fe48bae293cf9c37e9a3d89119&" style="width:100%;max-height:300px;object-fit:cover;border-radius:12px;margin-bottom:20px;">
+                    <h2 style="color:#ff0000;font-size:2.5rem;">ARAB LAND</h2>
+                    <p style="color:#ffd700;font-size:1.2rem;">مرحباً بك، ${user.username}</p>
+                    <p style="color:#aaa;font-size:1.2rem;margin-top:10px;">🌴 حياكم الله في جزيرة العرب 🌴</p>
+                    <div style="margin-top:20px;"><span class="status-badge status-online">🟢 المتجر مفتوح</span></div>
+                </div>
+            </section>
+        `;
+    }
+    
+    function getStorePage() {
+        return `
+            <section class="section">
+                <h2 class="section-title">🛍️ المتجر الرسمي</h2>
+                <div style="text-align:center;margin-bottom:30px;">
+                    <input type="text" id="searchInput" class="search-box" placeholder="🔍 ابحث عن منتج..." oninput="filterStoreItems()">
+                </div>
+                <h3 style="color:#00ff00;font-size:1.8rem;margin:30px 0 20px;">🏠 العقارات</h3>
+                <div class="store-grid">${getStoreItems('realestate')}</div>
+                <h3 style="color:#ffd700;font-size:1.8rem;margin:30px 0 20px;">🎁 الحزم</h3>
+                <div class="store-grid">${getStoreItems('packages')}</div>
+                <h3 style="color:#ff0000;font-size:1.8rem;margin:30px 0 20px;">⚔️ العصابات</h3>
+                <div class="store-grid">${getStoreItems('gangs')}</div>
+            </section>
+        `;
+    }
+    
+    function getStoreItems(type) {
+        const items = {
+            realestate: [
+                { name: 'محل عام', price: 1000000, icon: '🏪' },
+                { name: 'مطعم', price: 1000000, icon: '🍽️' },
+                { name: 'محل ملابس', price: 1000000, icon: '👕' },
+                { name: 'بيت صغير', price: 300000, icon: '🏠' },
+                { name: 'بيت متوسط', price: 500000, icon: '🏡' },
+                { name: 'قصر', price: 1000000, icon: '🏰' }
+            ],
+            packages: [
+                { name: 'حقيبة مستوى أول', price: 150000, icon: '👜' },
+                { name: 'حقيبة مستوى ثاني', price: 250000, icon: '👜' },
+                { name: 'حقيبة مستوى ثالث', price: 400000, icon: '👜' },
+                { name: 'مستوى تصنيع أسلحة 5', price: 500000, icon: '🔫' },
+                { name: 'مستوى شخصي 5', price: 500000, icon: '⭐' },
+                { name: 'سيارة من اختيارك', price: 300000, icon: '🚗' },
+                { name: 'VIP 1', price: 800000, icon: '👑' },
+                { name: 'VIP 2', price: 1500000, icon: '👑' },
+                { name: 'VIP 3', price: 2500000, icon: '👑' }
+            ],
+            gangs: [
+                { name: 'فتح عصابة جديدة', price: 500000, icon: '🆕' },
+                { name: 'استلام عصابة جاهزة', price: 50000, icon: '📥' },
+                { name: 'سياج للمقر', price: 200000, icon: '🧱' },
+                { name: 'تغيير مقر العصابة', price: 400000, icon: '🔄' },
+                { name: 'تغيير اسم ولون العصابة', price: 400000, icon: '🎨' },
+                { name: 'تعبئة خزنة أسلحة', price: 300000, icon: '🔫' },
+                { name: 'تعبئة متيريال', price: 150000, icon: '🧱' },
+                { name: 'سيارة للعصابة', price: 50000, icon: '🚗' },
+                { name: 'هيلي كوبتر', price: 150000, icon: '🚁' }
+            ]
+        };
+        const bgClass = { realestate: 'bg-realestate', packages: 'bg-packages', gangs: 'bg-gangs' };
+        return items[type].map(item => `
+            <div class="store-item ${bgClass[type]}" style="background:rgba(0,0,0,0.7);backdrop-filter:blur(5px);">
+                <div class="icon">${item.icon}</div>
+                <div class="name">${item.name}</div>
+                <div class="price">${item.price.toLocaleString()} كريدت</div>
+                <button class="btn-add" onclick="addToCart('${item.name}', ${item.price})">➕ أضف للسلة</button>
+            </div>
+        `).join('');
+    }
+    
+    function getJobsPage() {
+        const ministries = [
+            { name: 'وزارة الداخلية', img: 'https://cdn.discordapp.com/attachments/1259131362615492658/1536086258885861486/IMG__.png?ex=6a7a1f4f&is=6a78cdcf&hm=fb455773738c53eaddef025b89ed91aeb1bb09a725a19899934f0ea1eba63054&' },
+            { name: 'وزارة الصحة', img: 'https://cdn.discordapp.com/attachments/1259131362615492658/1536086261008302281/IMG__.png?ex=6a7a1f4f&is=6a78cdcf&hm=e9d51633f50acad3e7439e9e1c0a173113917fe4d76405593a261ed14b2c1ffa&' },
+            { name: 'وزارة الميكانيك', img: 'https://cdn.discordapp.com/attachments/1259131362615492658/1536086261754896424/IMG__.png?ex=6a7a1f4f&is=6a78cdcf&hm=aaba197d4f215fff734088f122cbc2e0c37b29dafbe785b772b8989cbcb255f6&' },
+            { name: 'وزارة العدل', img: 'https://cdn.discordapp.com/attachments/1259131362615492658/1536086259384979486/IMG__.png?ex=6a7a1f4f&is=6a78cdcf&hm=ebf7b157da0dd85ecb2675d7fdc701f6856a6ec17eec26195c7541d6bcd76b5f&' },
+            { name: 'وزارة الصحافة', img: 'https://cdn.discordapp.com/attachments/1259131362615492658/1536086260094083173/IMG__.png?ex=6a7a1f4f&is=6a78cdcf&hm=f003525842cd523f690655c616b94adf69100e7cd5915b466413b1c44af5e83d&' }
+        ];
+        return `
+            <section class="section">
+                <h2 class="section-title">💼 الوظائف الحكومية</h2>
+                <p style="text-align:center;color:#aaa;margin-bottom:30px;">التقديم على الوزارات</p>
+                <div class="store-grid">
+                    ${ministries.map(m => `
+                        <div class="ministry-card">
+                            <img src="${m.img}" alt="${m.name}">
+                            <h3 style="font-size:1.2rem;color:#fff;">${m.name}</h3>
+                            <span class="closed">🔴 التقديم مقفل</span>
+                        </div>
+                    `).join('')}
+                </div>
+            </section>
+        `;
+    }
+    
+    function getAdminPage() {
+        return `
+            <section class="section">
+                <h2 class="section-title">👑 الإدارة</h2>
+                <div class="store-grid" style="max-width:600px;margin:0 auto;">
+                    <div class="admin-card"><span class="rank">OWNER</span><div class="name">CJ</div><p style="color:#aaa;">المدير العام</p></div>
+                    <div class="admin-card"><span class="rank">🎬 يوتيوب</span><div class="name" style="color:#666;">فارغ</div></div>
+                    <div class="admin-card"><span class="rank">📱 تيك توك</span><div class="name" style="color:#666;">فارغ</div></div>
+                </div>
+            </section>
+        `;
+    }
+    
+    function getRulesPage() {
+        const laws = {
+            'قوانين الحياة الحديثة — NLR': [
+                'عند موتك داخل اللعبة تبدأ حياة جديدة كلياً، ولا يحق لك تذكر أي حدث وقع قبل موتك.',
+                'يمنع العودة إلى نفس المكان الذي متّ فيه خلال 15 دقيقة على الأقل.',
+                'لا يحق لك الانتقام من الشخص الذي قتلك في نفس السيناريو.',
+                'إذا متّ أثناء عملية (خطف، سرقة، مطاردة) لا يحق لك العودة للمشاركة فيها مجدداً.',
+                'مخالفة NLR تُعدّ من المخالفات الجسيمة وتستوجب عقوبة من الإدارة.'
+            ],
+            'بور جيمنج — PowerGaming': [
+                'يمنع إجبار اللاعبين على القيام بأفعال لا يرغبون بها دون منحهم فرصة للرد.',
+                'يمنع استخدام قدرات أو أفعال خارجة عن إطار الرول بلاي الواقعي.',
+                'يجب أن تكون جميع الأفعال والسيناريوهات قابلة للتصديق ضمن عالم الرول بلاي.',
+                'يمنع تنفيذ أفعال معقدة متعددة في آن واحد بشكل غير واقعي.',
+                'المخالفة المتعمدة تستوجب إجراءات من الإدارة.'
+            ],
+            'الخوف على الحياة — NVL': [
+                'يجب على كل لاعب أن يتصرف كما لو أن حياته ذات قيمة حقيقية.',
+                'إذا وُجّه إليك سلاح على مسافة قريبة، يجب الامتثال لأوامر المسلح.',
+                'يمنع الاستهتار بحياة شخصيتك مثل مواجهة مجموعة مسلحة بيديك فارغتين.',
+                'يمنع أداء أفعال انتحارية بشكل متكرر أو بدون مبرر رول بلاي واقعي.',
+                'مخالفة NVL تستوجب عقوبة صارمة.'
+            ],
+            'الميتا جيمنج — Metagaming': [
+                'يمنع استخدام أي معلومة حصلت عليها خارج اللعبة داخل اللعبة.',
+                'يمنع التنسيق مع لاعبين آخرين عبر قنوات خارجية أثناء السيناريو.',
+                'المعلومة لا تكون صالحة للاستخدام إلا إذا حصلت عليها عبر شخصيتك داخل اللعبة.',
+                'يُعدّ مشاهدة بث لاعب آخر ثم استخدام ما رآه ضده Metagaming صريح.',
+                'مخالفة هذا القانون تستوجب إجراءات فورية من الإدارة.'
+            ],
+            'القتل العشوائي — RDM / VDM': [
+                'يمنع قتل أي لاعب بدون سبب رول بلاي واضح ومبرر مسبق.',
+                'يجب أن يسبق أي قتل تصعيد درامي كافٍ داخل اللعبة.',
+                'يمنع استخدام السيارة كسلاح لدهس لاعبين عشوائياً.',
+                'حتى في الحروب بين العصابات يجب أن يكون هناك سبب رول بلاي معلن مسبقاً.',
+                'مخالفة RDM أو VDM تستوجب عقوبة حسب درجة المخالفة.'
+            ],
+            'القوانين العامة': [
+                'الاحترام المتبادل بين جميع اللاعبين إلزامي.',
+                'يمنع التحرش أو الإساءة اللفظية أو العنصرية بأي شكل كان.',
+                'يمنع استغلال الأخطاء البرمجية أو الثغرات ويجب الإبلاغ عنها.',
+                'الالتزام بقرارات الإدارة إلزامي ويمكن الاعتراض عبر القنوات الرسمية فقط.',
+                'يمنع انتحال صفة أعضاء الإدارة أو الطاقم الرسمي.',
+                'يُمنع نشر معلومات شخصية لأي لاعب.'
+            ],
+            'نظام الإنذارات': [
+                'كل مخالفة قد تُفضي إلى إنذار يُسجل في ملف اللاعب.',
+                '3 إنذارات تراكمية تستوجب إيقافاً مؤقتاً.',
+                '5 إنذارات تراكمية قد تصل للحظر الدائم.',
+                'يمكن الطعن في أي إنذار خلال 48 ساعة.',
+                'المخالفات الخطيرة قد تؤدي إلى حظر فوري.'
+            ],
+            'قوانين الشرطة': [
+                'يجب ارتداء الزي الرسمي الكامل أثناء الخدمة.',
+                'يمنع استخدام القوة المفرطة بدون مبرر رول بلاي واضح.',
+                'التدرج في التعامل إلزامي.',
+                'يمنع الإفراج عن موقوف دون تصريح مسؤول.',
+                'يجب توثيق جميع العمليات والاعتقالات.'
+            ],
+            'قوانين الإسعاف': [
+                'الإسعاف جهة محايدة ويمنع الانحياز لأي طرف.',
+                'يجب إسعاف الجميع بغض النظر عن هويتهم.',
+                'يمنع حمل أسلحة هجومية أثناء الخدمة.',
+                'يجب ارتداء الزي الرسمي الكامل طوال فترة الخدمة.',
+                'سيارة الإسعاف محمية أثناء المهام.'
+            ],
+            'قوانين العصابات': [
+                'يجب أن يكون لكل عصابة هيكل تنظيمي واضح ومعتمد من الإدارة.',
+                'الحروب تستلزم إعلاناً رسمياً وموافقة إدارية مسبقة.',
+                'يمنع استهداف المدنيين أو لاعبين خارج نطاق النزاع.',
+                'يمنع السطو دون الشروط المطلوبة من الإدارة.',
+                'أي عصابة بدون اعتماد رسمي تُعد غير شرعية.'
+            ]
+        };
+        let html = `<section class="section"><h2 class="section-title">📜 القوانين</h2><p style="text-align:center;color:#aaa;margin-bottom:30px;">يرجى قراءة القوانين بعناية قبل الانضمام</p><div class="store-grid">`;
+        for (const [title, items] of Object.entries(laws)) {
+            html += `<div class="glass-card"><h3 style="color:#ff0000;font-size:1.2rem;margin-bottom:15px;">${title}</h3>`;
+            items.forEach(item => { html += `<div class="law-item">${item}</div>`; });
+            html += `</div>`;
+        }
+        html += `</div></section>`;
+        return html;
+    }
+    
+    // ===== نظام السلة =====
+    let cart = [];
+    let cartCount = 0;
+    
+    function addToCart(name, price) {
+        const existing = cart.find(item => item.name === name);
+        if (existing) { existing.quantity += 1; } else { cart.push({ name, price, quantity: 1 }); }
+        cartCount += 1;
+        updateCartUI();
+        showNotification('✅ تم إضافة "' + name + '" إلى السلة!');
+    }
+    
+    function removeFromCart(index) {
+        cartCount -= cart[index].quantity;
+        cart.splice(index, 1);
+        updateCartUI();
+    }
+    
+    function updateCartUI() {
+        const itemsContainer = document.getElementById('cartItems');
+        const totalEl = document.getElementById('cartTotal');
+        const badge = document.getElementById('cartBadge');
+        badge.textContent = cartCount;
+        if (cart.length === 0) {
+            itemsContainer.innerHTML = '<p style="color:#666;text-align:center;padding:20px;">السلة فارغة</p>';
+            totalEl.textContent = 'المجموع: 0 كريدت';
+            return;
+        }
+        let html = '', total = 0;
+        cart.forEach((item, index) => {
+            total += item.price * item.quantity;
+            html += `
+                <div class="cart-item">
+                    <div><div class="item-name">${item.name}</div><div style="color:#888;font-size:0.8rem;">الكمية: ${item.quantity}</div></div>
+                    <div style="display:flex;align-items:center;gap:10px;">
+                        <span class="item-price">${(item.price * item.quantity).toLocaleString()} ك</span>
+                        <button onclick="removeFromCart(${index})" style="background:transparent;border:none;color:#ff0000;cursor:pointer;font-size:1.2rem;">✕</button>
+                    </div>
+                </div>
+            `;
+        });
+        itemsContainer.innerHTML = html;
+        totalEl.textContent = 'المجموع: ' + total.toLocaleString() + ' كريدت';
+    }
+    
+    function toggleCart() {
+        document.getElementById('cartSidebar').classList.toggle('open');
+    }
+    
+    function checkout() {
+        if (cart.length === 0) {
+            showNotification('⚠️ السلة فارغة! أضف منتجات أولاً.', 'error');
+            return;
+        }
+        const orderNumber = Date.now().toString().slice(-6) + Math.floor(Math.random() * 9000 + 1000);
+        let orderText = '🛍️ **طلب جديد من متجر Arab Land**\n📋 **رقم الطلب:** #' + orderNumber + '\n\n';
+        let total = 0;
+        cart.forEach(item => {
+            orderText += '- ' + item.name + ' (' + item.quantity + 'x) - ' + (item.price * item.quantity).toLocaleString() + ' كريدت\n';
+            total += item.price * item.quantity;
+        });
+        orderText += '\n💰 **الإجمالي:** ' + total.toLocaleString() + ' كريدت';
+        orderText += '\n\n📌 يرجى التوجه إلى تكت المتجر في الديسكورد لاستلام الطلب';
+        fetch('https://discord.com/api/webhooks/1536050582245081228/kFbbq1v92r15IC92OlfAkXjXQODCGJ68d73Ztp56IUThZVN19UPgAYIclu9jTmN13M9d', {
+            method: 'POST', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ content: orderText })
+        })
+        .then(res => {
+            if (res.ok) {
+                showNotification('✅ تم إرسال طلبك بنجاح! رقم الطلب: #' + orderNumber);
+                cart = []; cartCount = 0; updateCartUI(); toggleCart();
+            } else {
+                showNotification('❌ فشل الإرسال، تأكد من إعدادات الـ Webhook.', 'error');
+            }
+        })
+        .catch(() => showNotification('⚠️ خطأ في الشبكة.', 'error'));
+    }
+    
+    function showNotification(message, type = 'success') {
+        const colors = { success: '#00ff00', error: '#ff0000', warning: '#ffd700' };
+        const notification = document.createElement('div');
+        notification.style.cssText = `
+            position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%);
+            background: rgba(0,0,0,0.9); color: #fff; padding: 15px 30px;
+            border-radius: 12px; border: 2px solid ${colors[type] || '#ffd700'};
+            z-index: 2000; font-weight: 700; box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            animation: fadeInUp 0.4s ease;
+        `;
+        notification.textContent = message;
+        document.body.appendChild(notification);
+        setTimeout(() => {
+            notification.style.animation = 'fadeOutDown 0.4s ease';
+            setTimeout(() => notification.remove(), 400);
+        }, 3000);
+    }
+    
+    function filterStoreItems() {
+        const query = document.getElementById('searchInput').value.toLowerCase();
+        document.querySelectorAll('.store-item').forEach(item => {
+            const name = item.querySelector('.name')?.textContent?.toLowerCase() || '';
+            item.style.display = name.includes(query) ? 'block' : 'none';
+        });
+    }
+    
+    // ===== تحميل المستخدم المحفوظ =====
+    const savedUser = localStorage.getItem('user');
+    if (savedUser) { showMainSite(JSON.parse(savedUser)); }
+</script>
+
+</body>
+</html>
